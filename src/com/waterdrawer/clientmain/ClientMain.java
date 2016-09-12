@@ -17,7 +17,7 @@ public class ClientMain
 	public void start()
 	{
 		System.out.println("ClientMain Start");
-		ClientStateManager.getInstance().EnterDefaultState();
 		UIManager.getInstance().Init();
+		ClientStateManager.getInstance().EnterDefaultState();
 	}
 }
