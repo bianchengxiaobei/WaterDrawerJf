@@ -22,7 +22,9 @@ public class Main extends Application
 	public void start(Stage primaryStage) throws Exception 
 	{
 		primaryStage.setTitle("WaterDrawer");
-		Scene scene = new Scene(UIManager.root, 800, 600);
+		Group g = new Group();
+		Scene scene = new Scene(g,800,600);
+		g.getChildren().add(UIManager.root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

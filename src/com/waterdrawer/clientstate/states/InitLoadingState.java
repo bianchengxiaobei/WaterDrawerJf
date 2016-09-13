@@ -25,6 +25,7 @@ public class InitLoadingState implements IClientState
 	{
 		SetStateTo(ClientStateType.CS_Continue);	
 		UIManager.getInstance().m_mapUIs.get(UIType.UIT_MenuBar).Show(UIManager.root);
+		UIManager.getInstance().m_mapUIs.get(UIType.UIT_ToolBar).Show(UIManager.root);
 	}
 
 	@Override

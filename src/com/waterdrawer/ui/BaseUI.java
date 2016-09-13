@@ -1,10 +1,10 @@
 package com.waterdrawer.ui;
 
-import javafx.scene.Group;
+import javafx.scene.layout.VBox;
 
 public abstract class BaseUI 
 {
-	protected Group m_oRoot;
+	protected VBox m_oRoot;
 	protected String m_sUIName;
 	protected boolean m_bResident;
 	protected boolean m_bIsVisible = false;
@@ -19,7 +19,7 @@ public abstract class BaseUI
 	{
 		return this.m_bIsVisible;
 	}
-	public void Show(Group parent)
+	public void Show(VBox parent)
 	{
 		if (m_oRoot == null)
 		{

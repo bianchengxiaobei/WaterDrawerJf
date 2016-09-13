@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javafx.scene.Group;
+import javafx.scene.layout.VBox;
 
 
 public class UIManager
@@ -17,13 +18,15 @@ public class UIManager
 		}
 		return m_oInstance;
 	}
-	public static Group root ;
+	public static VBox root ;
 	public Map<UIType, BaseUI> m_mapUIs; 
 	public UIManager()
 	{
 		m_mapUIs = new HashMap<UIType, BaseUI>();
 		m_mapUIs.put(UIType.UIT_MenuBar, new MenuBar());
-		root = new Group();
+		m_mapUIs.put(UIType.UIT_ToolBar, new ToolBar());
+		root = new VBox();
+		root.setMaxHeight(Double.MAX_VALUE);
 	}
 	public void Init()
 	{
