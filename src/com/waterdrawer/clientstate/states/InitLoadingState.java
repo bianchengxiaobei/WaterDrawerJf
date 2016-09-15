@@ -24,14 +24,15 @@ public class InitLoadingState implements IClientState
 	public void enter() 
 	{
 		SetStateTo(ClientStateType.CS_Continue);	
-		UIManager.getInstance().m_mapUIs.get(UIType.UIT_MenuBar).Show(UIManager.root);
-		UIManager.getInstance().m_mapUIs.get(UIType.UIT_ToolBar).Show(UIManager.root);
+		UIManager.getInstance().m_mapUIs.get(UIType.UIT_MenuBar).Show(UIManager.Root);
+		UIManager.getInstance().m_mapUIs.get(UIType.UIT_ToolBar).Show(UIManager.Root);
+		UIManager.getInstance().m_mapUIs.get(UIType.UIT_ProjectView).Show(UIManager.Root);
 	}
 
 	@Override
 	public void exit() 
 	{
-			
+		
 	}
 
 }

@@ -8,6 +8,8 @@ import org.controlsfx.control.action.ActionGroup;
 import org.controlsfx.control.action.ActionUtils;
 
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
@@ -15,6 +17,7 @@ import javafx.scene.layout.VBox;
 public class MenuBar extends BaseUI
 {
 	private Collection<? extends Action> actions = null;
+	javafx.scene.control.MenuBar menu = null;
 	@Override
 	public void init() 
 	{
@@ -29,9 +32,8 @@ public class MenuBar extends BaseUI
 	@Override
 	protected void initWidgets() 
 	{
-		javafx.scene.control.MenuBar menu = ActionUtils.createMenuBar(actions);
-		menu.setPadding(new Insets(0));
-		m_oRoot.getChildren().add(menu);
+		menu = ActionUtils.createMenuBar(actions);
+		((VBox) m_oRoot).getChildren().add(menu);
 	}
 
 }
