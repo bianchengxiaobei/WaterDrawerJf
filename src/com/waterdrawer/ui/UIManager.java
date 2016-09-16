@@ -3,11 +3,13 @@ package com.waterdrawer.ui;
 import java.util.HashMap;
 import java.util.Map;
 
+import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 
 public class UIManager
