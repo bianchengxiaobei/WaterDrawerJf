@@ -11,7 +11,7 @@ import javafx.scene.control.TreeItem;
 public class WDFileUtil 
 {
 	private static TreeItem<String> fileTreeRoot = null;
-	/*
+	/**
 	 * 创建一个文件夹
 	 * */
 	public static boolean createFileDir(String fileDirPath)
@@ -28,7 +28,7 @@ public class WDFileUtil
 			return false;
 		}
 	}
-	/*
+	/**
 	 * 创建文件
 	 * */
 	public static boolean createFile(String fileName,String fileDir)
@@ -49,6 +49,117 @@ public class WDFileUtil
 		}
 		return false;
 	}
+	/**
+	 * 删除文件以及目录
+	 * @param filePath
+	 * @return
+	 */
+	public static boolean deleteFolder(String filePath)
+	{
+		File file = new File(filePath);
+		if (!file.exists())
+		{
+			return false;
+		}
+		else
+		{
+			if (file.isFile())
+			{
+				return deleteFile(filePath);
+			}
+			else
+			{
+				return deleteDir(filePath);
+			}
+		}
+	}
+	/**
+	 * 删除单个文件
+	 * @param filePath
+	 * @return
+	 */
+	public static boolean deleteFile(String filePath)
+	{
+		File file = new File(filePath);
+		if (file.exists() && file.isFile())
+		{
+			file.delete();
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * 删除文件夹
+	 * @param path
+	 * @return
+	 */
+	public static boolean deleteDir(String path)
+	{
+		if (!path.endsWith(File.separator))
+		{
+			path = path + File.separator;
+		}
+		File dirFile = new File(path);
+		if (!dirFile.exists() || !dirFile.isDirectory())
+		{
+			return false;
+		}
+		File[] files = dirFile.listFiles();
+		for (File f : files)
+		{
+			if (f.isFile())
+			{
+				if (!deleteFile(f.getAbsolutePath()))
+				{
+					return false;
+				}
+			}
+			else
+			{
+				if (!deleteDir(f.getAbsolutePath()))
+				{
+					return false;
+				}
+			}
+		}
+		if (dirFile.delete())
+		{
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * 重命名文件夹
+	 * @param path
+	 * @param oldName
+	 * @param newName
+	 * @return
+	 */
+	public static boolean renameFolder(String path,String oldName,String newName)
+	{
+		if (oldName.equals(newName))
+		{
+			return false;
+		}
+		File oldFile = new File(path+"/"+oldName);
+		File newFile = new File(path+"/"+newName);
+		if (!oldFile.exists())
+		{
+			return false;
+		}
+		if (newFile.exists())
+		{
+			System.err.println("重命名的文件已经存在");
+		}
+		else
+		{
+			oldFile.renameTo(newFile);
+		}
+		return true;
+	}
+	/**
+	 * 搜索工程目录取得列表树
+	 */
 	public static TreeItem<String> scanAllFile(String path)
 	{
 		TreeItem<String> root = new TreeItem<String>("项目工程");
@@ -65,6 +176,7 @@ public class WDFileUtil
 				{
 					list.add(f);
 					TreeItem<String> projectItem = new TreeItem<String>(f.getName(),ResourceUtil.getImageView("prj_obj.png"));
+					projectItem.setExpanded(true);
 					tempMap.put(f, projectItem);
 					root.getChildren().add(projectItem);
 				}
@@ -73,6 +185,7 @@ public class WDFileUtil
 					if (f.getPath().endsWith(".wd"))
 					{
 						TreeItem<String> wdItem = new TreeItem<String>(f.getName());
+						wdItem.setExpanded(false);
 						root.getChildren().add(wdItem);
 					}
 				}
@@ -88,6 +201,7 @@ public class WDFileUtil
 					{
 						list.add(f2);
 						TreeItem<String> folderItem = new TreeItem<String>(f2.getName());
+						folderItem.setExpanded(true);
 						tempMap.put(f2, folderItem);
 						tempMap.get(temp).getChildren().add(folderItem);
 					}
@@ -96,6 +210,7 @@ public class WDFileUtil
 						if (f2.getPath().endsWith(".wd"))
 						{
 							TreeItem<String> wdItem = new TreeItem<String>(f2.getName(),ResourceUtil.getImageView("file_obj.png"));
+							wdItem.setExpanded(false);
 							tempMap.get(temp).getChildren().add(wdItem);
 						}
 					}

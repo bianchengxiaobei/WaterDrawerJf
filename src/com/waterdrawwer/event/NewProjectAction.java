@@ -84,7 +84,9 @@ public class NewProjectAction extends Action
 			{
 				System.err.println("创建文件夹出错");
 			}
-			WDFileUtil.getFileTreeItemRoot().getChildren().add(new TreeItem<String>(inputProject.getText(),ResourceUtil.getImageView("prj_obj.png")));
+			TreeItem<String> newProjectItem = new TreeItem<String>(inputProject.getText(),ResourceUtil.getImageView("prj_obj.png"));
+			newProjectItem.setExpanded(true);
+			WDFileUtil.getFileTreeItemRoot().getChildren().add(newProjectItem);
 		}
 	}
 }

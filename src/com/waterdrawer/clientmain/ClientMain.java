@@ -1,9 +1,6 @@
 package com.waterdrawer.clientmain;
 
 
-import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import com.waterdrawer.clientstate.ClientStateManager;
 import com.waterdrawer.ui.UIManager;

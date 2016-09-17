@@ -12,6 +12,7 @@ import com.waterdrawer.util.ResourceUtil;
 import com.waterdrawer.util.WDFileUtil;
 import com.waterdrawwer.event.DeleteProjectAction;
 import com.waterdrawwer.event.NewProjectAction;
+import com.waterdrawwer.event.TreeViewEventCellImpl;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -49,6 +50,8 @@ public class ProjectView extends BaseUI
 	@Override
 	protected void initWidgets() 
 	{
+		projectTreeView.setEditable(true);
+		projectTreeView.setCellFactory(p -> new TreeViewEventCellImpl());
 		projectScrollPane.setContent(projectTreeView);
 		networkTab.setContent(projectScrollPane);
 		UIManager.projectViewTabPane.getTabs().add(networkTab);
