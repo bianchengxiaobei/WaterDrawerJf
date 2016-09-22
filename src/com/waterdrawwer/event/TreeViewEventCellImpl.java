@@ -4,13 +4,15 @@ package com.waterdrawwer.event;
 
 
 import com.waterdrawer.clientmain.ClientMain;
+import com.waterdrawer.clientstate.ClientStateManager;
+import com.waterdrawer.clientstate.ClientStateType;
 import com.waterdrawer.util.ResourceUtil;
 import com.waterdrawer.util.WDFileUtil;
 
 
 
 
-import javafx.scene.Parent;
+
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
@@ -30,8 +32,10 @@ public class TreeViewEventCellImpl extends TreeCell<String>
 		newNetworkItem.setOnAction(ae ->createNetwork());
 		
 		MenuItem renameNetworkItem = new MenuItem("删除网络模型");
-		networkMenu.getItems().add(renameNetworkItem);
+		MenuItem openNetworkItem = new MenuItem("打开");
+		networkMenu.getItems().addAll(renameNetworkItem,openNetworkItem);
 		renameNetworkItem.setOnAction(ae -> deleteNetwork());
+		openNetworkItem.setOnAction(ae -> openNetwork());
 	}
 	@Override
 	public void startEdit()
@@ -117,6 +121,10 @@ public class TreeViewEventCellImpl extends TreeCell<String>
 		newNetwork.setExpanded(false);
 		getTreeItem().getChildren().add(newNetwork);
 		WDFileUtil.createFile("NewNetwork.wd", ClientMain.projectPath+"/"+getString());
+	}
+	private void openNetwork()
+	{
+		ClientStateManager.getInstance().ChangeClientStateTo(ClientStateType.CS_Working);
 	}
 	private void deleteNetwork()
 	{

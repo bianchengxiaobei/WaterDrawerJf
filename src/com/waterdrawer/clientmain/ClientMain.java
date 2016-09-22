@@ -3,6 +3,7 @@ package com.waterdrawer.clientmain;
 
 
 import com.waterdrawer.clientstate.ClientStateManager;
+import com.waterdrawer.config.ConfigLoadManager;
 import com.waterdrawer.ui.UIManager;
 
 public class ClientMain 
@@ -20,6 +21,7 @@ public class ClientMain
 	public void start()
 	{
 		System.out.println("ClientMain Start");
+		ConfigLoadManager.getInstance().loadAll();
 		UIManager.getInstance().Init();
 		ClientStateManager.getInstance().EnterDefaultState();
 	}

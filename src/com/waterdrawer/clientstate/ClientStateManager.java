@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.waterdrawer.clientstate.states.InitLoadingState;
+import com.waterdrawer.clientstate.states.WorkingState;
 
 public class ClientStateManager 
 {
@@ -23,6 +24,7 @@ public class ClientStateManager
 	{
 		m_mapClientStates = new HashMap<ClientStateType, IClientState>();
 		m_mapClientStates.put(ClientStateType.CS_InitLoading, new InitLoadingState());
+		m_mapClientStates.put(ClientStateType.CS_Working, new WorkingState());
 	}
 	public IClientState getCurrentState()
 	{
