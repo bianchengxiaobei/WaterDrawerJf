@@ -32,7 +32,8 @@ public class Main extends Application
 		BorderPane borderPane = new BorderPane();
 		borderPane.setTop(UIManager.Root);
 		borderPane.setCenter(UIManager.splitPane);
-		Scene scene = new Scene(borderPane,800,600);
+		borderPane.getChildren().add(UIManager.copyButton);
+		Scene scene = new Scene(borderPane,800,600);		
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

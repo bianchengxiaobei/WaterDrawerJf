@@ -13,7 +13,11 @@ import com.waterdrawer.config.IConfig;
 import com.waterdrawer.util.ResourceUtil;
 import com.waterdrawer.util.WDFileUtil;
 import com.waterdrawwer.event.DeleteProjectAction;
+import com.waterdrawwer.event.Delta;
 import com.waterdrawwer.event.NewProjectAction;
+import com.waterdrawwer.event.PrimitiveDragEnd;
+import com.waterdrawwer.event.PrimitiveDragEnter;
+import com.waterdrawwer.event.PrimitiveDragOver;
 import com.waterdrawwer.event.TreeViewEventCellImpl;
 
 import javafx.event.Event;
@@ -81,10 +85,13 @@ public class ProjectView extends BaseUI
 		int row = 0;
 		for (IConfig c : ConfigLoadManager.getInstance().m_mapAllConfig.values())
 		{
-			System.out.println(c.getPrimitivePath());
 			Image icon = new Image(c.getPrimitivePath(),50,50,false,false);
 			Button button = new Button();
 			button.setGraphic(new ImageView(icon));
+			Delta delta = new Delta();
+			button.setOnMousePressed(new PrimitiveDragEnter(delta,UIManager.copyButton,c));
+			button.setOnMouseDragged(new PrimitiveDragOver(delta,UIManager.copyButton));
+			button.setOnMouseReleased(new PrimitiveDragEnd(delta, UIManager.copyButton));
 			//button.setMaxWidth(Double.MAX_VALUE);
 			col = col % maxColumns + 1;
 			if (col == 1) row++;

@@ -6,8 +6,14 @@ package com.waterdrawwer.event;
 import com.waterdrawer.clientmain.ClientMain;
 import com.waterdrawer.clientstate.ClientStateManager;
 import com.waterdrawer.clientstate.ClientStateType;
+import com.waterdrawer.ui.Canvas;
+import com.waterdrawer.ui.UIManager;
+import com.waterdrawer.ui.UIType;
 import com.waterdrawer.util.ResourceUtil;
 import com.waterdrawer.util.WDFileUtil;
+
+
+
 
 
 
@@ -121,10 +127,14 @@ public class TreeViewEventCellImpl extends TreeCell<String>
 		newNetwork.setExpanded(false);
 		getTreeItem().getChildren().add(newNetwork);
 		WDFileUtil.createFile("NewNetwork.wd", ClientMain.projectPath+"/"+getString());
+		
+		//ClientStateManager.getInstance().ChangeClientStateTo(ClientStateType.CS_Working);
+		((Canvas)UIManager.getInstance().getUI(UIType.UIT_Canvas)).addCanvas("NewNetwork.wd", 0);
+		
 	}
 	private void openNetwork()
 	{
-		ClientStateManager.getInstance().ChangeClientStateTo(ClientStateType.CS_Working);
+		//ClientStateManager.getInstance().ChangeClientStateTo(ClientStateType.CS_Working);
 	}
 	private void deleteNetwork()
 	{
